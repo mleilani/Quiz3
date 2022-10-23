@@ -1,11 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+
 // Global variable to set the maximum number to be generated to recall the users input for the new max throughout the program
 int max_number = 10;
 int main()
 {
     int numberOfGuess, guess, option, max, win = 0, randomNumber;
     char c[2];
+    FILE *fp;
     // do-while loop for the list of menu user can choose until the exit by entering option 3
     do
     {
@@ -19,6 +22,18 @@ int main()
         case 1:
             numberOfGuess = 0;
             // Generate a random number from 0 to maximum number set by the user
+            if (access("./maxNumber.txt", F_OK) == 0)
+            {
+                // File exist
+                fp = fopen("maxNum.txt", "r");
+                fscanf(fp, "%d", &max_number);
+            }
+            else
+            {
+                // File doesnt exist
+                max_number = 10;
+            }
+
             randomNumber = rand() % max_number + 1;
             printf("Please enter a number \n");
             do
@@ -51,6 +66,7 @@ int main()
             break;
         case 2:
             // ask the user to set the new maximum number
+            char arr[20];
             printf("Enter the new maximum number:\n");
             do
             {
@@ -60,7 +76,14 @@ int main()
                     printf("Please enter a valid number \n");
                 // if the new number is valid assign it to our global variable
                 else
+                {
+                    fp = fopen("maxNumber.txt", "w");
+                    itoa(max, arr, 10);
+                    fprintf(fp, arr);
+                    fclose(fp);
                     max_number = max;
+                    break;
+                }
             } while (max <= 0 || max > 10);
             printf("The new maximum number generated will be between 0 to %d\n", max_number);
             break;
