@@ -2,26 +2,6 @@
 #include <stdlib.h>
 #include <time.h>
 
-// function to print the square
-void printSquare(int square[3][3])
-{
-
-	for (int i = 0; i < 3; i++)
-	{
-		printf("[");
-		for (int j = 0; j < 3; j++)
-		{
-			if (j == 2)
-			{
-				printf("%d]", square[i][j]);
-				break;
-			}
-			printf("%d ", square[i][j]);
-		}
-		printf("\n");
-	}
-}
-
 // function to fill the square with random numbers using time
 
 // function to check if it is a magic square
@@ -71,6 +51,27 @@ int isMagicSquare(int square[3][3])
 
 	return 1;
 }
+
+// function to print the square
+void printSquare(int square[3][3])
+{
+
+	for (int i = 0; i < 3; i++)
+	{
+		printf("[");
+		for (int j = 0; j < 3; j++)
+		{
+			if (j == 2)
+			{
+				printf("%d]", square[i][j]);
+				break;
+			}
+			printf("%d ", square[i][j]);
+		}
+		printf("\n");
+	}
+}
+
 
 int main()
 {
