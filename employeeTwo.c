@@ -2,27 +2,9 @@
 
 #include "employee.h" 
 
-//NOTE: 5 functions have been defined below 
-
-//ptr - points to table to be searched 
-
-//tableSize - size of the table 
-
-//targetPtr - points to value that will be searched for in table 
-
-//functionPtr - points to a comparison function below and will perform the associated check 
-
- 
-
-//What does setting a function to static do??  
-
-//functionPtr is the address of the function just use the name 
-
-//()(The second set of parentheses is the arguments of the function call) 
-
 static PtrToEmployee searchEmployeeTable(PtrToConstEmployee ptr, int tableSize, const void *targetPtr,  
 
-                    int (*functionPtr)(const void *, PtrToConstEmployee)) 
+int (*functionPtr)(const void *, PtrToConstEmployee)) 
 
 { 
 
